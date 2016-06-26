@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Todos</h1>
+
+<div class="container">
+  <div id="new-todo" class="row text-center">
+    <%= render Todo.new %>
+  </div>
+  <div id="todos" class="row text-center">
+    <% @todos.each do |todo| %>
+      <%= render partial: 'todo', locals: { todo: todo } %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+

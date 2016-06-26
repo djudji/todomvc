@@ -1,0 +1,15 @@
+<%= form_for(todo, remote: true) do |f| %>
+  <div class="todo">
+    <% if !todo.new_record? %>
+      <div class="field row-inline">
+        <%= f.hidden_field :status %>
+      </div>
+    <% end %>
+    <div class="field row-inline">
+      <%= f.text_field :description %>
+    </div>
+    <div class="actions row-inline">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

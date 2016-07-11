@@ -1,0 +1,2 @@
+$('<%= j render @todo %>').insertAfter('div[data-id=task-<%= @todo.id %>]');
+$('#todos').find('div[data-id=task-<%= @todo.id %>]').first().remove();

@@ -1,16 +1,30 @@
-<div class="todo" data-id="<%= todo.id.nil? ? 'new' : todo.id %>">
-    <%= form_for(todo, remote: true) do |f| %>
+<div class="todo" data-id="task-<%= todo.id.nil? ? 'new' : todo.id %>">
+  <%= form_for(todo, remote: true) do |f| %>
+    <% if todo.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% todo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
     <% if !todo.new_record? %>
       <div class="field row-inline">
-        <%= f.hidden_field :status %>
+        <%= f.check_box :is_completed %>
       </div>
     <% end %>
     <div class="field row-inline">
-      <%= f.text_field :description %>
+      <%= f.text_field :description, placeholder: "What needs to be done?" %>
     </div>
     <div class="actions row-inline">
-      <%= f.submit %>
+      <%= f.submit class:"hidden" %>
     </div>
+    <% if !todo.new_record? %>
+      <div class="field row-inline">
+        <%= link_to 'x', todo, method: :delete, remote: true %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
